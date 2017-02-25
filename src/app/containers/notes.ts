@@ -1,4 +1,8 @@
-import { Component } from '@angular/core'
+import { 
+    Component,
+    OnInit
+} from '@angular/core'
+import { NotesService } from '../services/notes'
 
 @Component({
     selector: 'notes-container',
@@ -16,8 +20,8 @@ import { Component } from '@angular/core'
                 <note-card
                 class="col-xs-4"
                 [noteData]="note"
-                *ngFor="let note of notes; let i = index"
-                (noteCardRemoved)="removeNoteCard(i)"
+                *ngFor="let note of notes"
+                (noteCardRemoved)="removeNoteCard(note)"
                 >
                 </note-card>
             </div>
@@ -37,30 +41,34 @@ import { Component } from '@angular/core'
     ]
 })
 
-export class NotesContainer {
-    notes = [
-        {
-            title: 'Eat',
-            value: 'Eat something!',
-            color: 'white'
-        },
-        {
-            title: 'Sleep',
-            value: 'Go to bed!',
-            color: 'white'
-        },
-        {
-            title: 'Code',
-            value: 'Angular 2!',
-            color: 'white'
-        }
-    ]
+export class NotesContainer implements OnInit {
+    notes = [];
 
-    removeNoteCard(i) { 
-        this.notes.splice(i, 1);
+    private notesService: NotesService;
+
+    constructor(notesService: NotesService) {
+        this.notesService = notesService;
+    }
+
+    ngOnInit() {
+        this.notesService
+            .getNotes()
+            .subscribe(notes => this.notes = notes.data);
+    }
+
+    removeNoteCard(note) { 
+        this.notesService
+            .completeNote(note)
+            .subscribe(note => {
+                let index = this.notes.findIndex(localNote => localNote.id === note.id)
+
+                this.notes.splice(index, 1);
+            });
     }
 
     createNote(note) {
-        this.notes.push(note);
+        this.notesService
+            .createNote(note)
+            .subscribe(note => this.notes.push(note));
     }
 }

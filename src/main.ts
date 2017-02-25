@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { FormsModule } from '@angular/forms'
+import { HttpModule } from '@angular/http'
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
-import { App } from './app/app'
+import { App, providers } from './app'
 import { MainContainer, NotesContainer } from './app/containers' 
 import { Navbar, NoteCard, NoteCreator  } from './app/ui'
 
@@ -15,7 +16,12 @@ import { Navbar, NoteCard, NoteCreator  } from './app/ui'
         NotesContainer,
         NoteCreator
     ],
-    imports: [BrowserModule, FormsModule],
+    imports: [
+        BrowserModule, 
+        FormsModule, 
+        HttpModule
+        ],
+    providers,
     bootstrap: [App]
 })
 
