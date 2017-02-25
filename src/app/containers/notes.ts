@@ -44,11 +44,7 @@ import { NotesService } from '../services/notes'
 export class NotesContainer implements OnInit {
     notes = [];
 
-    private notesService: NotesService;
-
-    constructor(notesService: NotesService) {
-        this.notesService = notesService;
-    }
+    constructor(private notesService: NotesService) { }
 
     ngOnInit() {
         this.notesService

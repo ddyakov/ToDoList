@@ -9,12 +9,9 @@ export class Api {
         'Accept': 'application/json'
     })
 
-    private http: Http;
     private baseUrl: string = 'http://localhost:3500';
 
-    constructor(http: Http) {
-        this.http = http;
-    }
+    constructor(private http: Http) { }
     
     private checkForErrors(resp: Response) {
         if (resp.status >= 200  && resp.status < 300) {

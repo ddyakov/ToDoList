@@ -5,11 +5,8 @@ import { Observable } from 'rxjs/Observable'
 @Injectable()
 export class NotesService { 
     private path: string = '/notes';
-    private api: Api;
 
-    constructor(api: Api) {
-        this.api = api;
-    }
+    constructor(private api: Api) { }
 
     getNotes() : Observable<any> {
         return this.api.get(this.path);
