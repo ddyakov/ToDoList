@@ -3,9 +3,9 @@ import { Component } from '@angular/core'
 @Component({
     selector: 'app',
     template: `
-        <navbar></navbar>
         <div>
-            <main-container></main-container>
+            <navbar></navbar>
+            <router-outlet></router-outlet>
         </div>
     `
 })
