@@ -5,13 +5,12 @@ import { Component } from '@angular/core'
     template: 
     `
         <header class="app-bar row middle-xs">
-            <span [routerLink]="[' ']" class="logo col-xs-10">
+            <span [routerLink]="[' ']" class="logo col-xs-11">
                 To Do List
             </span>
-            <nav class="col-xs-2">
+            <nav class="col-xs-1">
                 <div class="row middle-xs between-xs">
                     <span [routerLink]="['about']" class="link">About</span>
-                    <span class="link">Signout</span>
                 </div>
             </nav>
         </header>
